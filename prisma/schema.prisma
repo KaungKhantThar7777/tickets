@@ -14,9 +14,9 @@ datasource db {
 }
 
 model User {
-  id        String   @id
-  createdAt DateTime @default(now())
-  updatedAt DateTime
+  id        String    @id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 
   name  String
   image String?
@@ -26,17 +26,17 @@ model User {
 }
 
 model Admin {
-  id        String   @id
-  createdAt DateTime @default(now())
-  updatedAt DateTime
+  id        String    @id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 
   user User @relation(fields: [id], references: [id])
 }
 
 model Manager {
-  id        String   @id
-  createdAt DateTime @default(now())
-  updatedAt DateTime
+  id        String    @id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 
   user User @relation(fields: [id], references: [id])
 }
