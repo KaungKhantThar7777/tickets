@@ -1,0 +1,27 @@
+services:
+  db:
+    container_name: tickets-db
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=tickets
+      - POSTGRES_PASSWORD=tickets
+      - POSTGRES_DB=tickets
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  pgadmin:
+    container_name: tickets-pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - '5050:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    depends_on:
+      - db
+
+volumes:
+  db_data:
