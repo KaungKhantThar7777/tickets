@@ -8,6 +8,7 @@ import {
   SignInButton,
   SignOutButton,
 } from '@clerk/nextjs'
+import { TRPCProvider } from '@/trpc/client'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,19 +24,21 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
+      <TRPCProvider>
+        <html lang="en">
+          <body className={inter.className}>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
 
-          <SignedIn>
-            <SignOutButton />
-          </SignedIn>
+            <SignedIn>
+              <SignOutButton />
+            </SignedIn>
 
-          {children}
-        </body>
-      </html>
+            {children}
+          </body>
+        </html>
+      </TRPCProvider>
     </ClerkProvider>
   )
 }
